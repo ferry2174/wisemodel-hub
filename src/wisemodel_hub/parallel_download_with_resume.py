@@ -1,12 +1,14 @@
 import os
-import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from urllib.parse import urlparse
+
+import requests
 from tqdm import tqdm
-from contants import WM_ENDPOINT, CACHE_PATH
+
+from .constants import CACHE_PATH, WM_ENDPOINT
+
 
 class LFSDownload:
-    def __init__(self, repo_id, file_name, revision='main',num_parts=8):
+    def __init__(self, repo_id, file_name, revision="main", num_parts=8):
         self.repo_id = repo_id
         self.url = WM_ENDPOINT + f"/file-proxy/{repo_id}/-/raw/{revision}/{file_name}"
         self.cache_dir = os.path.join(CACHE_PATH, repo_id.replace("/", "_"))
@@ -18,17 +20,17 @@ class LFSDownload:
 
     def prepare(self):
         # Get the total size of the file
-        res = requests.get(self.url,stream=True)
+        """
+        res = requests.get(self.url, stream=True)
         if res.status_code == 200:
             self.total_size = int(res.headers.get("Content-Length", 0))
         res.close()
-
-        """         
+        """
         # Get the total size of the file
         res = requests.head(self.url)
-        if res.status_code == 200:
-            self.total_size = int(res.headers.get("Content-Length", 0))
-        """
+        res.raise_for_status()
+        self.total_size = int(res.headers.get("Content-Length", 0))
+
         # Calculate the size of each part
         part_size = self.total_size // self.num_parts
         remaining = self.total_size % self.num_parts
@@ -56,7 +58,7 @@ class LFSDownload:
             print(f"Resuming download of part {temp_file}, starting from {start + resume_size}")
 
         headers = {"Range": f"bytes={start+resume_size}-{end-1}"}
-        
+
         response = requests.get(self.url, headers=headers, stream=True)
 
         with open(temp_file, "ab") as f:  # Write to temporary file
@@ -67,7 +69,6 @@ class LFSDownload:
 
     def merge_parts(self):
         try:
-
             for start, end, temp_file in self.parts:
                 if os.path.exists(temp_file):
                     if os.path.getsize(temp_file) == end - start:
@@ -85,9 +86,12 @@ class LFSDownload:
             print(f"Error merging parts: {e}")
             os.remove(self.file_name)  # Delete incomplete file
             raise e
+
     def run(self):
         with ThreadPoolExecutor(max_workers=self.num_parts) as executor:
-            futures = [executor.submit(self.download_part, start, end, temp_file) for start, end, temp_file in self.parts]
+            futures = [
+                executor.submit(self.download_part, start, end, temp_file) for start, end, temp_file in self.parts
+            ]
 
             for future in as_completed(futures):
                 future.result()
@@ -97,26 +101,28 @@ class LFSDownload:
     def download(self):
         if os.path.exists(self.file_name):
             print(f'File "{self.file_name}" already exists. Skip downloading.')
-            return 
-        
+            return
+
         self.prepare()
-        '''
+        """
         # Create an empty file or resume from existing
         if not os.path.exists(self.file_name):
             with open(self.file_name, "wb") as f:
                 f.truncate(self.total_size)
-        '''
+        """
 
         # Initialize progress bar
-        self.progress_bar = tqdm(total=self.total_size, unit='B', unit_scale=True, desc=self.file_name)
+        self.progress_bar = tqdm(total=self.total_size, unit="B", unit_scale=True, desc=self.file_name)
 
         self.run()
 
         self.progress_bar.close()
+
+
 if __name__ == "__main__":
     # Example usage
     repo_id = "OpenBMB/miniCPM-dpo-fp32"
-    file_name = 'pytorch_model.bin'
+    file_name = "pytorch_model.bin"
 
     download = LFSDownload(repo_id=repo_id, file_name=file_name)
     download.download()

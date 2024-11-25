@@ -1,9 +1,11 @@
 import os
-from pathlib import Path
 import shutil
+
 import requests
 from tqdm import tqdm
-from contants import WM_ENDPOINT, CACHE_PATH
+
+from .constants import CACHE_PATH, WM_ENDPOINT
+
 
 class GitFileDownload:
     def __init__(self, repo_id):
@@ -12,7 +14,7 @@ class GitFileDownload:
 
     def download_file(self, file_name, revision="main", local_dir=None):
         # Construct the raw file URL
-        #lfs_url = "https://awsdownload.wisemodel.cn/file-proxy/rwkv4fun/Rwkv-6-world/-/raw/main/RWKV-x060-World-1B6-v2-20240208-ctx4096.pth"
+        # lfs_url = "https://awsdownload.wisemodel.cn/file-proxy/rwkv4fun/Rwkv-6-world/-/raw/main/RWKV-x060-World-1B6-v2-20240208-ctx4096.pth"
 
         repo_id = self.repo_id
         file_url = WM_ENDPOINT + f"/file-proxy/{repo_id}/-/raw/{revision}/{file_name}"
@@ -54,7 +56,7 @@ class GitFileDownload:
             progress_bar = tqdm(total=total_size, unit="iB", unit_scale=True, initial=resume_size)
 
             # Create incomplete file if it doesn't exist
-            
+
             with open(incomplete_path, "ab") as f:
                 for chunk in r.iter_content(chunk_size=1024):
                     if chunk:
@@ -62,6 +64,7 @@ class GitFileDownload:
                         progress_bar.update(len(chunk))
 
         os.replace(incomplete_path, cache_path)
+
 
 if __name__ == "__main__":
     # Example usage
