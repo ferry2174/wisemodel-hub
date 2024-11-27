@@ -1,10 +1,12 @@
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from copy import deepcopy
 
 import requests
 from tqdm import tqdm
 
-from .constants import CACHE_PATH, WM_ENDPOINT
+from .constants import CACHE_PATH, HEADERS, WM_ENDPOINT
+from .utils import get_remote_file_size_with_url
 
 
 class LFSDownload:
@@ -17,19 +19,10 @@ class LFSDownload:
         self.total_size = None
         self.parts = []
         self.progress_bar = None
+        self.headers = deepcopy(HEADERS)
 
     def prepare(self):
-        # Get the total size of the file
-        """
-        res = requests.get(self.url, stream=True)
-        if res.status_code == 200:
-            self.total_size = int(res.headers.get("Content-Length", 0))
-        res.close()
-        """
-        # Get the total size of the file
-        res = requests.head(self.url)
-        res.raise_for_status()
-        self.total_size = int(res.headers.get("Content-Length", 0))
+        self.total_size = get_remote_file_size_with_url(self.url)
 
         # Calculate the size of each part
         part_size = self.total_size // self.num_parts
@@ -57,9 +50,9 @@ class LFSDownload:
             self.progress_bar.update(resume_size)  # Update progress for already downloaded part
             print(f"Resuming download of part {temp_file}, starting from {start + resume_size}")
 
-        headers = {"Range": f"bytes={start+resume_size}-{end-1}"}
+        self.headers["Range"] = f"bytes={start+resume_size}-{end-1}"
 
-        response = requests.get(self.url, headers=headers, stream=True)
+        response = requests.get(self.url, headers=self.headers, stream=True)
 
         with open(temp_file, "ab") as f:  # Write to temporary file
             for chunk in response.iter_content(chunk_size=8192):

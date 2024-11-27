@@ -1,23 +1,27 @@
 from .constants import RETRY_TIMES
 from .download_with_resume import GitFileDownload
 from .parallel_download_with_resume import LFSDownload
-from .utils import get_file_names
+from .utils import get_file_names, is_file_downloaded, is_greater_than_10mb
 
 
 # download model files from Wisemodel by providing repo_id in format like 'rwkv4fun/Rwkv-6-world'
-def snapshot_download(repo_id, revision="main"):
+def snapshot_download(repo_id, revision="main", num_parts=4):
     file_names = get_file_names(repo_id)
     for file_name in file_names:
         try_times = 0
         while try_times < RETRY_TIMES + 1:
+            if is_file_downloaded(repo_id, file_name, revision):
+                print(f"{file_name} already exists in cache.")
+                break
             try:
                 try_times += 1
                 print(f"Downloading {file_name}...")
                 # raise Exception("Test exception")  # 用于测试的异常
-                if file_name.endswith(".bin") or file_name.endswith(".safetensors"):
-                    lfs_file_download(repo_id, file_name, revision=revision)
+                if is_greater_than_10mb(repo_id, file_name, revision):
+                    lfs_file_download(repo_id, file_name, revision=revision, num_parts=num_parts)
                 else:
                     file_download(repo_id, file_name, revision=revision)
+                break
             except Exception as e:
                 print(f"Failed to download {file_name}: {e}")
                 if try_times < RETRY_TIMES + 1:

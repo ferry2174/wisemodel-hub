@@ -15,7 +15,7 @@ _SUBMOD_ATTRS = {
         "snapshot_download",
     ],
     "upload": [
-        "upload_with_progress_bar",
+        "upload_file",
     ],
 }
 
@@ -128,4 +128,4 @@ if TYPE_CHECKING:  # pragma: no cover
         lfs_file_download,  # noqa: F401
         snapshot_download,  # noqa: F401
     )
-    from .upload import upload_with_progress_bar  # noqa: F401
+    from .upload import upload_file  # noqa: F401

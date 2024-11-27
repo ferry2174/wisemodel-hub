@@ -1,10 +1,12 @@
 import os
 import shutil
+from copy import deepcopy
 
 import requests
 from tqdm import tqdm
 
-from .constants import CACHE_PATH, WM_ENDPOINT
+from .constants import CACHE_PATH, HEADERS, WM_ENDPOINT
+from .utils import get_remote_file_size_with_url
 
 
 class GitFileDownload:
@@ -18,10 +20,8 @@ class GitFileDownload:
 
         repo_id = self.repo_id
         file_url = WM_ENDPOINT + f"/file-proxy/{repo_id}/-/raw/{revision}/{file_name}"
-        print(file_url)
 
         # Get cache path and incomplete path
-        print(self.cache_dir)
         os.makedirs(self.cache_dir, exist_ok=True)
         cache_path = os.path.join(self.cache_dir, file_name)
         if os.path.exists(cache_path):
@@ -35,6 +35,8 @@ class GitFileDownload:
             resume_size = os.path.getsize(incomplete_path)
 
         # Download with resume support
+        print(f"Downloading from {file_url}")
+        print(f"Cache path: {cache_path}")
         self._download_with_resume(file_url, cache_path, incomplete_path, resume_size)
 
         # Copy to local directory or return cached path
@@ -47,12 +49,17 @@ class GitFileDownload:
             return cache_path
 
     def _download_with_resume(self, url, cache_path, incomplete_path, resume_size):
-        headers = {"Range": f"bytes={resume_size}-"} if resume_size else None
+        # headers = {"Range": f"bytes={resume_size}-"} if resume_size else None
+        headers = deepcopy(HEADERS)
+        if resume_size:
+            headers["Range"] = f"bytes={resume_size}-"
 
         with requests.get(url, stream=True, headers=headers) as r:
             r.raise_for_status()
-            total_size = int(r.headers.get("Content-Length", 0)) + resume_size
+
+            total_size = get_remote_file_size_with_url(url)
             print(f"file total_size:{total_size}")
+
             progress_bar = tqdm(total=total_size, unit="iB", unit_scale=True, initial=resume_size)
 
             # Create incomplete file if it doesn't exist
