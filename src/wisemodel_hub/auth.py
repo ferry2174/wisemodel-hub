@@ -9,9 +9,7 @@ from .constants import CACHE_PATH, NOTEBOOK_LOGIN_HTML_END, NOTEBOOK_LOGIN_HTML_
 from .utils import is_notebook
 
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
-
 
 def _login_with_url(username, password):
     token_file_path = os.path.join(CACHE_PATH, ".token")

@@ -15,12 +15,8 @@ install_requires = [
     "packaging>=20.9",
     "requests>=2.20.0",
     "tqdm>=4.64.1",
-    "urllib3>=1.24.2",
     "python-gitlab>=5.0.0",
 ]
-# SQLAlchemy==1.1.15
-# rsa==3.4.2
-# redis==3.5.0
 
 extras = {}
 
