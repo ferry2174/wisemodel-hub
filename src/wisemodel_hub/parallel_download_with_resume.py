@@ -1,4 +1,5 @@
 import os
+import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 
@@ -10,16 +11,18 @@ from .utils import get_remote_file_size_with_url
 
 
 class LFSDownload:
-    def __init__(self, repo_id, file_name, revision="main", num_parts=8):
+    def __init__(self, repo_id, file_name, local_dir=None, revision="main", num_parts=8):
         self.repo_id = repo_id
         self.url = WM_ENDPOINT + f"/file-proxy/{repo_id}/-/raw/{revision}/{file_name}"
         self.cache_dir = os.path.join(CACHE_PATH, repo_id.replace("/", "_"))
-        self.file_name = os.path.join(self.cache_dir, file_name)
+        self.cache_file_name = os.path.join(self.cache_dir, file_name)
         self.num_parts = num_parts
         self.total_size = None
         self.parts = []
         self.progress_bar = None
         self.headers = deepcopy(HEADERS)
+        self.local_dir = local_dir
+        self.file_name = os.path.join(self.local_dir, file_name)
 
     def prepare(self):
         self.total_size = get_remote_file_size_with_url(self.url)
@@ -34,7 +37,7 @@ class LFSDownload:
             size = part_size
             if i == self.num_parts - 1:
                 size += remaining
-            self.parts.append((start, start + size, f"{self.file_name}.part{i+1}"))  # Add temporary file name
+            self.parts.append((start, start + size, f"{self.cache_file_name}.part{i+1}"))  # Add temporary file name
             start += size
         os.makedirs(self.cache_dir, exist_ok=True)
 
@@ -69,7 +72,7 @@ class LFSDownload:
                     else:
                         raise Exception("Not all parts have been downloaded. ")
 
-            with open(self.file_name, "ab") as outfile:
+            with open(self.cache_file_name, "ab") as outfile:
                 for start, end, temp_file in self.parts:
                     print(f"Merging part {temp_file}")
                     with open(temp_file, "rb") as infile:
@@ -77,7 +80,7 @@ class LFSDownload:
                     os.remove(temp_file)  # Delete temporary file
         except Exception as e:
             print(f"Error merging parts: {e}")
-            os.remove(self.file_name)  # Delete incomplete file
+            os.remove(self.cache_file_name)  # Delete incomplete file
             raise e
 
     def run(self):
@@ -92,30 +95,22 @@ class LFSDownload:
         self.merge_parts()  # Merge temporary files into final file
 
     def download(self):
-        if os.path.exists(self.file_name):
-            print(f'File "{self.file_name}" already exists. Skip downloading.')
+        if os.path.exists(self.cache_file_name):
+            print(f'File "{self.cache_file_name}" already exists. Skip downloading.')
             return
 
         self.prepare()
-        """
-        # Create an empty file or resume from existing
-        if not os.path.exists(self.file_name):
-            with open(self.file_name, "wb") as f:
-                f.truncate(self.total_size)
-        """
 
         # Initialize progress bar
-        self.progress_bar = tqdm(total=self.total_size, unit="B", unit_scale=True, desc=self.file_name)
+        self.progress_bar = tqdm(total=self.total_size, unit="B", unit_scale=True, desc=self.cache_file_name)
 
         self.run()
 
         self.progress_bar.close()
 
-
-if __name__ == "__main__":
-    # Example usage
-    repo_id = "OpenBMB/miniCPM-dpo-fp32"
-    file_name = "pytorch_model.bin"
-
-    download = LFSDownload(repo_id=repo_id, file_name=file_name)
-    download.download()
+        if self.local_dir:
+            os.makedirs(os.path.dirname(self.file_name), exist_ok=True)
+            shutil.copyfile(self.cache_file_name, self.file_name)
+            return self.file_name
+        else:
+            return self.cache_file_name

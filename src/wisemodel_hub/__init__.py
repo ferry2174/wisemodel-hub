@@ -1,10 +1,14 @@
 import importlib
+import logging
 import os
 import sys
 from typing import TYPE_CHECKING
 
 
-__version__ = "v0.1.0"
+__version__ = "v0.1.1"
+
+# 配置日志记录
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # WARNING: any comment added in this dictionary definition will be lost when
 # re-generating the file !
@@ -14,7 +18,8 @@ _SUBMOD_ATTRS = {
         "lfs_file_download",
         "snapshot_download",
     ],
-    "upload": [
+    "upload_file": [
+        "push_to_hub",
         "upload_file",
     ],
 }
@@ -128,4 +133,7 @@ if TYPE_CHECKING:  # pragma: no cover
         lfs_file_download,  # noqa: F401
         snapshot_download,  # noqa: F401
     )
-    from .upload import upload_file  # noqa: F401
+    from .upload_file import (
+        push_to_hub,  # noqa: F401
+        upload_file,  # noqa: F401
+    )

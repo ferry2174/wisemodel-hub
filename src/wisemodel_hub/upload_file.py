@@ -3,16 +3,16 @@ import os
 import requests
 from tqdm import tqdm
 
-from ..constants import WM_URL_ADDFILES, WM_URL_CHECK, WM_URL_MERGE, WM_URL_UPLOAD
-from ..utils import calculate_md5
+from .auth import get_local_token, login_required
+from .constants import WM_URL_ADDFILES, WM_URL_CHECK, WM_URL_MERGE, WM_URL_UPLOAD
+from .utils import calculate_md5, filter_files_with_regex
 
 
-TEMP_AUTH = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MzI4NzE0OTUsInVzZXJfaWQiOjg3MzYsInVzZXJuYW1lIjoiZGFkYmVhciIsImlzcyI6InN6In0.jP29N2wr_6xeDujWNYJ-gUlWbGFI0IsIE1OLAJDpv6I"
-
-
+@login_required
 def upload_file(
-    file_path, repo_id, token, project_id, branch, commit_message, chunk_size=5 * 1024 * 1024, retries=3, timeout=None
+    file_path, repo_id, project_id, branch, commit_message, chunk_size=5 * 1024 * 1024, retries=3, timeout=None
 ):
+    token = get_local_token()
     file_name = os.path.basename(file_path)
     file_md5 = calculate_md5(file_path)
 
@@ -98,3 +98,39 @@ def upload_file(
         return
 
     print(f"{file_name},文件上传并添加到仓库成功")
+
+
+@login_required
+def push_to_hub(
+    dir_path,
+    repo_id,
+    project_id,
+    regex_pattern=None,
+    branch="master",
+    commit_message="commit",
+    chunk_size=5 * 1024 * 1024,
+    retries=3,
+    timeout=None,
+):
+    """
+    将文件上传到主站 model_hub 的函数。
+
+    参数：
+    dir_path - 文件夹路径，必须是文件夹
+    repo_id - 主站 model_hub 的库 id
+    regex_pattern - 正则表达式串，用于过滤文件
+    branch - 主站 model_hub 的分支
+    commit_message - 主站 model_hub 的提交信息
+    chunk_size - 上传到主站时分段大小
+    retries - 如果上传失败，重试次数
+    timeout - 超时时间
+    """
+    if not os.path.isdir(dir_path):
+        raise ValueError(f"指定路径 '{dir_path}' 不是文件夹")
+    # 获取文件列表并进行正则表达式过滤
+    file_list = os.listdir(dir_path)
+    if regex_pattern:
+        file_list = filter_files_with_regex(file_list, regex_pattern)
+    for file_name in file_list:
+        file_path = os.path.join(dir_path, file_name)
+        upload_file(file_path, repo_id, project_id, branch, commit_message, chunk_size, retries, timeout)

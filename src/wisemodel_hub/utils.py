@@ -1,5 +1,6 @@
 import hashlib
 import os
+import re
 
 import gitlab
 import requests
@@ -50,8 +51,31 @@ def calculate_md5(file_path):
     return hash_md5.hexdigest()
 
 
-if __name__ == "__main__":
-    repo_id = "01.AI/Yi-34B-Chat-4bits"
-    file_names = get_file_names(repo_id)
-    for file_name in file_names:
-        print(file_name)
+def is_notebook():
+    try:
+        from IPython import get_ipython  # type: ignore
+
+        ip = get_ipython()
+        if ip is not None and "IPKernelApp" in ip.config:
+            return True
+    except ImportError:
+        return False
+    return False
+
+
+def filter_files_with_regex(file_list, regex_pattern=None):
+    """
+    使用正则表达式过滤文件列表，返回匹配的文件子列表。
+    如果未提供正则表达式模式，返回原文件列表。
+
+    参数：
+    file_list - 文件列表
+    regex_pattern - 正则表达式模式（可选）
+
+    返回：
+    匹配的文件子列表
+    """
+    if not regex_pattern:
+        return file_list
+    pattern = re.compile(regex_pattern)
+    return [file for file in file_list if pattern.search(file)]

@@ -15,9 +15,6 @@ class GitFileDownload:
         self.cache_dir = os.path.join(CACHE_PATH, repo_id.replace("/", "_"))
 
     def download_file(self, file_name, revision="main", local_dir=None):
-        # Construct the raw file URL
-        # lfs_url = "https://awsdownload.wisemodel.cn/file-proxy/rwkv4fun/Rwkv-6-world/-/raw/main/RWKV-x060-World-1B6-v2-20240208-ctx4096.pth"
-
         repo_id = self.repo_id
         file_url = WM_ENDPOINT + f"/file-proxy/{repo_id}/-/raw/{revision}/{file_name}"
 

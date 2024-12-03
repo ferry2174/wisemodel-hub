@@ -23,3 +23,15 @@ WM_URL_CHECK = "https://www.wisemodel.cn/gateway/fileupload/api/v1/check"
 WM_URL_UPLOAD = "https://www.wisemodel.cn/gateway/fileupload/api/v1/upload"
 WM_URL_MERGE = "https://www.wisemodel.cn/gateway/fileupload/api/v1/merge"
 WM_URL_ADDFILES = "https://www.wisemodel.cn/gateway/fileupload/api/v1/addfiles"
+WM_URL_LOGIN = "https://www.wisemodel.cn/gateway/user/api/v1/login"
+
+NOTEBOOK_LOGIN_HTML_START = """<center> <img
+src=https://www.wisemodel.cn/img/logo.31fb6580.png
+alt='Wise Model'> <br> After entering your username and password,
+you can log in immediately and then proceed again. If you want to
+log in with a different user, please log in again using
+notebook_Login (new_dession=True) or login (new_dession=True).
+</center>"""
+NOTEBOOK_LOGIN_HTML_END = """
+<b>Pro Tip:</b> If you don't have an account yet, please create one
+on the www.wisemodel.cn </center>"""
