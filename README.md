@@ -1,6 +1,11 @@
 # wisemodel-hub
     这是wisemodel开源社区仓库上传和下载工具，用于上传下载数据集、模型、代码等。
 
+## 安装
+```shell
+pip install --index-url https://test.pypi.org/simple/ wisemodel_hub
+```
+
 ## 登录
     在登录前需要先注册账号，注册地址为：[https://wisemodel.cn/home](https://wisemodel.cn/home)
 
