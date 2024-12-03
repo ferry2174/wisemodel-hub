@@ -13,6 +13,10 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 # WARNING: any comment added in this dictionary definition will be lost when
 # re-generating the file !
 _SUBMOD_ATTRS = {
+    "auth": [
+        "login",
+        "notebook_login",
+    ],
     "snapshot_download": [
         "file_download",
         "lfs_file_download",
@@ -128,6 +132,10 @@ if os.environ.get("EAGER_IMPORT", ""):
 # make style
 # ```
 if TYPE_CHECKING:  # pragma: no cover
+    from .auth import (
+        login,  # noqa: F401
+        notebook_login,  # noqa: F401
+    )
     from .snapshot_download import (
         file_download,  # noqa: F401
         lfs_file_download,  # noqa: F401

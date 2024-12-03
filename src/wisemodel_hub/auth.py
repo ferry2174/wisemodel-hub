@@ -11,6 +11,7 @@ from .utils import is_notebook
 
 logger = logging.getLogger(__name__)
 
+
 def _login_with_url(username, password):
     token_file_path = os.path.join(CACHE_PATH, ".token")
     # 请求获取 token
