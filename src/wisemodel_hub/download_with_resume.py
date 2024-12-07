@@ -14,14 +14,14 @@ class GitFileDownload:
         self.repo_id = repo_id
         self.cache_dir = os.path.join(CACHE_PATH, repo_id.replace("/", "_"))
 
-    def download_file(self, file_name, revision="main", local_dir=None):
+    def download_file(self, file_name, revision="main", local_dir=None, force_download=False):
         repo_id = self.repo_id
         file_url = WM_ENDPOINT + f"/file-proxy/{repo_id}/-/raw/{revision}/{file_name}"
 
         # Get cache path and incomplete path
         os.makedirs(self.cache_dir, exist_ok=True)
         cache_path = os.path.join(self.cache_dir, file_name)
-        if os.path.exists(cache_path):
+        if os.path.exists(cache_path) and not force_download:
             print(f"{file_name} already exists in cache.")
             return cache_path
         incomplete_path = cache_path + ".incomplete"

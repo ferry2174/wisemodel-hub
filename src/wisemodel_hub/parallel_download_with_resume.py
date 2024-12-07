@@ -11,7 +11,7 @@ from .utils import get_remote_file_size_with_url
 
 
 class LFSDownload:
-    def __init__(self, repo_id, file_name, local_dir=None, revision="main", num_parts=8):
+    def __init__(self, repo_id, file_name, local_dir=None, revision="main", num_parts=8, force_download=False):
         self.repo_id = repo_id
         self.url = WM_ENDPOINT + f"/file-proxy/{repo_id}/-/raw/{revision}/{file_name}"
         self.cache_dir = os.path.join(CACHE_PATH, repo_id.replace("/", "_"))
@@ -23,6 +23,7 @@ class LFSDownload:
         self.headers = deepcopy(HEADERS)
         self.local_dir = local_dir
         self.file_name = os.path.join(self.local_dir, file_name)
+        self.force_download = force_download
 
     def prepare(self):
         self.total_size = get_remote_file_size_with_url(self.url)
@@ -95,7 +96,7 @@ class LFSDownload:
         self.merge_parts()  # Merge temporary files into final file
 
     def download(self):
-        if os.path.exists(self.cache_file_name):
+        if os.path.exists(self.cache_file_name) and not self.force_download:
             print(f'File "{self.cache_file_name}" already exists. Skip downloading.')
             return
 
