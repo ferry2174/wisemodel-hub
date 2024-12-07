@@ -115,7 +115,7 @@ def push_to_hub(
     """
     将文件上传到主站 model_hub 的函数。
 
-    参数：
+    :param
     dir_path - 文件夹路径，必须是文件夹
     repo_id - 主站 model_hub 的库 id
     regex_pattern - 正则表达式串，用于过滤文件
@@ -124,6 +124,9 @@ def push_to_hub(
     chunk_size - 上传到主站时分段大小
     retries - 如果上传失败，重试次数
     timeout - 超时时间
+
+    :raise
+    ValueError - dir_path 路径不是文件夹
     """
     if not os.path.isdir(dir_path):
         raise ValueError(f"指定路径 '{dir_path}' 不是文件夹")

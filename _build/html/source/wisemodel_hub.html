@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wisemodel_hub package &mdash; wisemodel-hub v0.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d7bb714b"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=beaddf03"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            wisemodel-hub
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">wisemodel-hub</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">wisemodel-hub</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">wisemodel_hub package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/wisemodel_hub.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wisemodel-hub-package">
+<h1>wisemodel_hub package<a class="headerlink" href="#wisemodel-hub-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-wisemodel_hub.auth">
+<span id="wisemodel-hub-auth-module"></span><h2>wisemodel_hub.auth module<a class="headerlink" href="#module-wisemodel_hub.auth" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.auth.get_local_token">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.auth.</span></span><span class="sig-name descname"><span class="pre">get_local_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.auth.get_local_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.auth.login">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.auth.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_session</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.auth.login" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.auth.login_required">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.auth.</span></span><span class="sig-name descname"><span class="pre">login_required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.auth.login_required" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.auth.notebook_login">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.auth.</span></span><span class="sig-name descname"><span class="pre">notebook_login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_session</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.auth.notebook_login" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-wisemodel_hub.constants">
+<span id="wisemodel-hub-constants-module"></span><h2>wisemodel_hub.constants module<a class="headerlink" href="#module-wisemodel_hub.constants" title="Link to this heading"></a></h2>
+</section>
+<section id="module-wisemodel_hub.download_with_resume">
+<span id="wisemodel-hub-download-with-resume-module"></span><h2>wisemodel_hub.download_with_resume module<a class="headerlink" href="#module-wisemodel_hub.download_with_resume" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="wisemodel_hub.download_with_resume.GitFileDownload">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wisemodel_hub.download_with_resume.</span></span><span class="sig-name descname"><span class="pre">GitFileDownload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.download_with_resume.GitFileDownload" title="Link to this definition"></a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="wisemodel_hub.download_with_resume.GitFileDownload.download_file">
+<span class="sig-name descname"><span class="pre">download_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.download_with_resume.GitFileDownload.download_file" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-wisemodel_hub.parallel_download_with_resume">
+<span id="wisemodel-hub-parallel-download-with-resume-module"></span><h2>wisemodel_hub.parallel_download_with_resume module<a class="headerlink" href="#module-wisemodel_hub.parallel_download_with_resume" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="wisemodel_hub.parallel_download_with_resume.LFSDownload">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wisemodel_hub.parallel_download_with_resume.</span></span><span class="sig-name descname"><span class="pre">LFSDownload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_parts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.parallel_download_with_resume.LFSDownload" title="Link to this definition"></a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="wisemodel_hub.parallel_download_with_resume.LFSDownload.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.parallel_download_with_resume.LFSDownload.download" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wisemodel_hub.parallel_download_with_resume.LFSDownload.download_part">
+<span class="sig-name descname"><span class="pre">download_part</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.parallel_download_with_resume.LFSDownload.download_part" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wisemodel_hub.parallel_download_with_resume.LFSDownload.merge_parts">
+<span class="sig-name descname"><span class="pre">merge_parts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.parallel_download_with_resume.LFSDownload.merge_parts" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wisemodel_hub.parallel_download_with_resume.LFSDownload.prepare">
+<span class="sig-name descname"><span class="pre">prepare</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.parallel_download_with_resume.LFSDownload.prepare" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wisemodel_hub.parallel_download_with_resume.LFSDownload.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.parallel_download_with_resume.LFSDownload.run" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-wisemodel_hub.snapshot_download">
+<span id="wisemodel-hub-snapshot-download-module"></span><h2>wisemodel_hub.snapshot_download module<a class="headerlink" href="#module-wisemodel_hub.snapshot_download" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.snapshot_download.file_download">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.snapshot_download.</span></span><span class="sig-name descname"><span class="pre">file_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.snapshot_download.file_download" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.snapshot_download.lfs_file_download">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.snapshot_download.</span></span><span class="sig-name descname"><span class="pre">lfs_file_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_parts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.snapshot_download.lfs_file_download" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.snapshot_download.snapshot_download">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.snapshot_download.</span></span><span class="sig-name descname"><span class="pre">snapshot_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_parts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.snapshot_download.snapshot_download" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-wisemodel_hub.upload_file">
+<span id="wisemodel-hub-upload-file-module"></span><h2>wisemodel_hub.upload_file module<a class="headerlink" href="#module-wisemodel_hub.upload_file" title="Link to this heading"></a></h2>
+</section>
+<section id="module-wisemodel_hub.utils">
+<span id="wisemodel-hub-utils-module"></span><h2>wisemodel_hub.utils module<a class="headerlink" href="#module-wisemodel_hub.utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.utils.calculate_md5">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.utils.</span></span><span class="sig-name descname"><span class="pre">calculate_md5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.utils.calculate_md5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.utils.filter_files_with_regex">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.utils.</span></span><span class="sig-name descname"><span class="pre">filter_files_with_regex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.utils.filter_files_with_regex" title="Link to this definition"></a></dt>
+<dd><p>使用正则表达式过滤文件列表，返回匹配的文件子列表。
+如果未提供正则表达式模式，返回原文件列表。</p>
+<p>参数：
+file_list - 文件列表
+regex_pattern - 正则表达式模式（可选）</p>
+<p>返回：
+匹配的文件子列表</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.utils.get_file_names">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.utils.</span></span><span class="sig-name descname"><span class="pre">get_file_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.utils.get_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.utils.get_remote_file_size">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.utils.</span></span><span class="sig-name descname"><span class="pre">get_remote_file_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.utils.get_remote_file_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.utils.get_remote_file_size_with_url">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.utils.</span></span><span class="sig-name descname"><span class="pre">get_remote_file_size_with_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.utils.get_remote_file_size_with_url" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.utils.is_file_downloaded">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.utils.</span></span><span class="sig-name descname"><span class="pre">is_file_downloaded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.utils.is_file_downloaded" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.utils.is_greater_than_10mb">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.utils.</span></span><span class="sig-name descname"><span class="pre">is_greater_than_10mb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.utils.is_greater_than_10mb" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.utils.is_notebook">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.utils.</span></span><span class="sig-name descname"><span class="pre">is_notebook</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.utils.is_notebook" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-wisemodel_hub">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-wisemodel_hub" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.file_download">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.</span></span><span class="sig-name descname"><span class="pre">file_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.file_download" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.lfs_file_download">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.</span></span><span class="sig-name descname"><span class="pre">lfs_file_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'main'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_parts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.lfs_file_download" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.login">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_session</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.login" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.notebook_login">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.</span></span><span class="sig-name descname"><span class="pre">notebook_login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_session</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.notebook_login" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wisemodel_hub.push_to_hub">
+<span class="sig-prename descclassname"><span class="pre">wisemodel_hub.</span></span><span class="sig-name descname"><span class="pre">push_to_hub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wisemodel_hub.push_to_hub" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, WiseModel。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
