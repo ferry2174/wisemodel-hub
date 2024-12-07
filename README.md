@@ -1,5 +1,5 @@
 # wisemodel-hub README
-    这是wisemodel开源社区仓库上传和下载工具，用于上传下载数据集、模型、代码等。
+这是wisemodel开源社区仓库上传和下载工具，用于上传下载数据集、模型、代码等。
 
 ## 安装
 ```shell
@@ -7,12 +7,13 @@ pip install --index-url https://test.pypi.org/simple/ wisemodel_hub
 ```
 
 ## 登录
-    在登录前需要先注册账号，注册地址为：[https://wisemodel.cn/home](https://wisemodel.cn/home)
+在登录前需要先注册账号，注册地址为：[https://wisemodel.cn/home](https://wisemodel.cn/home)
+
 
 ### 自动登录
-    在执行需要登录才能执行的函数时，会自动判断是否需要登录，使用用户名和密码进行登录。<br/>
-    当使用notebook时，登录后重新执行原流程即可。<br/>
-    当使用命令行时，登录后会自动执行原流程代码。<br/>
+在执行需要登录才能执行的函数时，会自动判断是否需要登录，使用用户名和密码进行登录。
+当使用notebook时，登录后重新执行原流程即可。
+当使用命令行时，登录后会自动执行原流程代码。
 
 ### notebook登录
 ```python
