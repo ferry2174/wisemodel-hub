@@ -9,5 +9,5 @@ wisemodel-hub documentation
 .. toctree::
    :maxdepth: 2
 
-   README
+   source/modules
 

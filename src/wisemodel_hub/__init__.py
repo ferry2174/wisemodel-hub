@@ -14,15 +14,16 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 # re-generating the file !
 _SUBMOD_ATTRS = {
     "auth": [
+        "get_local_token",
         "login",
         "notebook_login",
     ],
-    "snapshot_download": [
+    "downloader": [
         "file_download",
         "lfs_file_download",
         "snapshot_download",
     ],
-    "upload_file": [
+    "uploader": [
         "push_to_hub",
         "upload_file",
     ],
@@ -133,15 +134,16 @@ if os.environ.get("EAGER_IMPORT", ""):
 # ```
 if TYPE_CHECKING:  # pragma: no cover
     from .auth import (
+        get_local_token,  # noqa: F401
         login,  # noqa: F401
         notebook_login,  # noqa: F401
     )
-    from .snapshot_download import (
+    from .downloader import (
         file_download,  # noqa: F401
         lfs_file_download,  # noqa: F401
         snapshot_download,  # noqa: F401
     )
-    from .upload_file import (
+    from .uploader import (
         push_to_hub,  # noqa: F401
         upload_file,  # noqa: F401
     )

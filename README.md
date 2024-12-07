@@ -1,4 +1,4 @@
-# wisemodel-hub
+# wisemodel-hub README
     这是wisemodel开源社区仓库上传和下载工具，用于上传下载数据集、模型、代码等。
 
 ## 安装

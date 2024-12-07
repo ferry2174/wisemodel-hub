@@ -19,6 +19,7 @@ HEADERS["Cookie"] = (
 TEN_MB = 10 * 1024 * 1024
 SLEEP_TIME = 5
 
+WM_URL_BASE = "https://www.wisemodel.cn"
 WM_URL_CHECK = "https://www.wisemodel.cn/gateway/fileupload/api/v1/check"
 WM_URL_UPLOAD = "https://www.wisemodel.cn/gateway/fileupload/api/v1/upload"
 WM_URL_MERGE = "https://www.wisemodel.cn/gateway/fileupload/api/v1/merge"

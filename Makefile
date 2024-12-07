@@ -16,15 +16,15 @@ style:
 	python utils/check_static_imports.py --update
 
 clean:
-	rm -rf build/* dist/* _build/*
+	rm -rf build/* dist/* 
 
 # You can set these variables from the command line, and also
 # from the environment for the first two.
 SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SPHINXPYAPIDOC ?= sphinx-apidoc
-SOURCEDIR     = .
-BUILDDIR      = _build
+SOURCEDIR     = docs
+BUILDDIR      = docs/_build
 PYSOURCEDIR   = src/wisemodel_hub
 
 # Put it first so that "make" without argument is like "make help".
@@ -35,8 +35,8 @@ help:
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-apidoc:
-	@$(SPHINXPYAPIDOC) -o source "$(PYSOURCEDIR)" 
+#apidoc:
+#	@$(SPHINXPYAPIDOC) -o source "$(PYSOURCEDIR)" 
 
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

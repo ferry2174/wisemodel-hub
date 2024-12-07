@@ -45,8 +45,7 @@ extras["quality"] = [
 
 extras["doc"] = [
     "sphinx>=8.1.0",
-    "sphinx-autobuild>=2024.10.3"
-    "sphinx_rtd_theme>=3.0.0",
+    "sphinx-autobuild>=2024.10.3" "sphinx_rtd_theme>=3.0.0",
     "myst_parser>=4.0.0",
     "sphinx-markdown-tables>=0.0.17",
 ]

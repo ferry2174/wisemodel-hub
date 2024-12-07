@@ -1,3 +1,4 @@
+import functools
 import getpass
 import json
 import logging
@@ -33,6 +34,16 @@ def _login_with_url(username, password):
 
 
 def get_local_token():
+    """
+    get_local_token 获取缓存中的token
+    -----------------------------------
+
+    从缓存获取api token
+
+    返回值：
+    ::::::::::
+        str: api token
+    """
     token_file_path = os.path.join(CACHE_PATH, ".token")
 
     # 检查本地是否已有 token 文件
@@ -46,12 +57,22 @@ def get_local_token():
 
 
 def notebook_login(new_session=False):
+    """
+    notebook_login 获取主站api访问token
+    -----------------------------------
+
+    登录到 WiseModel Hub 并获取 token
+
+    参数：
+    ::::::::::
+        - **new_session** (bool, optional) - 是否使用新的会话登录. Defaults to False.
+    """
     # 检查本地是否已有 token 文件
     if not new_session:
         token = get_local_token()
         if token:
             logger.info(
-                "User is already logged in. If you want to login again, invoke notebook_login() or login() function, and set `new_session=True`"
+                "User is already logged in. If you want to login with a different account, invoke notebook_login() or login() function, and set `new_session=True`"
             )
             return
 
@@ -93,31 +114,39 @@ def notebook_login(new_session=False):
         except Exception as e:
             with output:
                 output.clear_output()
-                logger.error(f"Failed to login: {e}")
+                raise Exception(f"Failed to login: {e}")
 
     login_button.on_click(on_button_clicked)
 
 
 def login(new_session=False):
+    """
+    login 获取主站api访问token
+    -----------------------------
+
+    登录到 WiseModel Hub 并获取 token
+
+    参数：
+    :::::::::::
+        - **new_session** (bool, optional) - 是否使用新的会话登录. Defaults to False.
+    """
     # 检查本地是否已有 token 文件
     if not new_session:
         token = get_local_token()
         if token:
             logger.info(
-                "User is already logged in. If you want to login again, invoke notebook_login() or login() function, and set `new_session=True`"
+                "User is already logged in. If you want to login with a different account, invoke notebook_login() or login() function, and set `new_session=True`"
             )
             return
 
     username = input("Username: ")
     password = getpass.getpass("Password: ")
-    try:
-        _login_with_url(username, password)
-        logger.info("Login success!")
-    except Exception as e:
-        logger.error(f"Failed to login: {e}")
+    _login_with_url(username, password)
+    logger.info("Login success!")
 
 
 def login_required(func):
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
         if is_notebook():
             notebook_login()
