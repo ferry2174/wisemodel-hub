@@ -19,6 +19,8 @@ pip install --index-url https://test.pypi.org/simple/ wisemodel_hub
 from wisemodel_hub import notebook_login
 
 notebook_login(new_session=True)
+```
+
 ### 命令行登录
 ```python
 from wisemodel_hub import login
