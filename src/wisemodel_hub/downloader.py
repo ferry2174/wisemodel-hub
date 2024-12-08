@@ -32,9 +32,18 @@ def snapshot_download(repo_id, local_dir=None, revision="main", regex_pattern=No
                 try_times += 1
                 print(f"Downloading {file_name}...")
                 if is_greater_than_10mb(repo_id, file_name, revision):
-                    lfs_file_download(repo_id, file_name, local_dir=local_dir, revision=revision, num_parts=num_parts, force_download=force_download)
+                    lfs_file_download(
+                        repo_id,
+                        file_name,
+                        local_dir=local_dir,
+                        revision=revision,
+                        num_parts=num_parts,
+                        force_download=force_download,
+                    )
                 else:
-                    file_download(repo_id, file_name, local_dir=local_dir, revision=revision, force_download=force_download)
+                    file_download(
+                        repo_id, file_name, local_dir=local_dir, revision=revision, force_download=force_download
+                    )
                 break
             except Exception as e:
                 print(f"Failed to download {file_name}: {e}")
@@ -60,7 +69,9 @@ def lfs_file_download(repo_id, file_name, local_dir=None, revision="main", num_p
     - **num_parts:** 下载分块数，默认为8
     - **force_download**: 是否强制下载，如果本地已存在，则重新下载，默认为False
     """
-    downloader = LFSDownload(repo_id, file_name, local_dir=local_dir, revision=revision, num_parts=num_parts, force_download=force_download)
+    downloader = LFSDownload(
+        repo_id, file_name, local_dir=local_dir, revision=revision, num_parts=num_parts, force_download=force_download
+    )
     downloader.download()
 
 

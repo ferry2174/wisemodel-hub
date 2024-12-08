@@ -64,6 +64,7 @@ push_to_hub(dir_path, repo_id, repo_type, regex_pattern=regex_pattern, branch=br
 ``` 
 
 ## 下载
+目前不支持私有项目下载。
 ### 下载单个文件
 单线程下载。
 ```python
